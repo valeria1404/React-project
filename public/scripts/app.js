@@ -5,8 +5,8 @@ console.log("App.js Is Running");
 //JSX - JavaScript XML
 
 var app = {
-    tittle: 'Some Title',
-    subtitle: 'Subtitle',
+    tittle: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
     options: ['one', 'two']
 };
 var template = React.createElement(
@@ -17,10 +17,15 @@ var template = React.createElement(
         null,
         app.tittle
     ),
-    React.createElement(
+    app.subtitle && React.createElement(
         'p',
         null,
         app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.options.length > 0 ? 'Here are your options' : 'No options'
     ),
     React.createElement(
         'ol',
@@ -38,42 +43,47 @@ var template = React.createElement(
     )
 );
 
-var user = {
-    name: 'Valeria Hernandez',
-    age: 26,
-    location: 'Insurgentes Sur'
-};
-
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location,
-            ' '
-        );
-    } else {
-        return undefined;
-    }
-}
-var templateTwo = React.createElement(
+var count = 0;
+var templateThree = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name ? user.name : 'Anonymous'
+        'Count: ',
+        count
     ),
-    user.age && user.name >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
+    React.createElement(
+        'button',
+        { id: 'MyId', className: 'button' },
+        '+1'
+    )
 );
+
+console.log(templateThree);
+
+/*
+const user = {
+    name :'Valeria Hernandez',
+    age : 26,
+    location : 'Insurgentes Sur'
+};
+
+function getLocation(location){
+    if(location){
+        return <p>Location: {location} </p>;
+    }else{
+        return undefined;
+    }
+}
+const templateTwo = (
+    <div>
+        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
+    </div>
+);*/
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(templateThree, appRoot);
